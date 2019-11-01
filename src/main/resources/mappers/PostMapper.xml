@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lost_found.dao.PostMapper" >
+  <resultMap id="BaseResultMap" type="com.lost_found.pojo.Post" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="lose_time" property="loseTime" jdbcType="TIMESTAMP" />
+    <result column="lost_place" property="lostPlace" jdbcType="VARCHAR" />
+    <result column="contact" property="contact" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="details" property="details" jdbcType="VARCHAR" />
+    <result column="post_type" property="postType" jdbcType="INTEGER" />
+    <result column="browse_points" property="browsePoints" jdbcType="INTEGER" />
+    <result column="praise_points" property="praisePoints" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, `name`, lose_time, lost_place, contact, image, `type`, details, post_type,
+    browse_points, praise_points, status, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from post
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from post
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lost_found.pojo.Post" >
+    insert into post (id, user_id, `name`,
+      lose_time, lost_place, contact, 
+      image, `type`, details,
+      post_type, browse_points, praise_points, 
+      status, create_time, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{loseTime,jdbcType=TIMESTAMP}, #{lostPlace,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, 
+      #{image,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{details,jdbcType=VARCHAR}, 
+      #{postType,jdbcType=INTEGER}, #{browsePoints,jdbcType=INTEGER}, #{praisePoints,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lost_found.pojo.Post" >
+    insert into post
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="name != null" >
+        `name`,
+      </if>
+      <if test="loseTime != null" >
+        lose_time,
+      </if>
+      <if test="lostPlace != null" >
+        lost_place,
+      </if>
+      <if test="contact != null" >
+        contact,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="type != null" >
+        `type`,
+      </if>
+      <if test="details != null" >
+        details,
+      </if>
+      <if test="postType != null" >
+        post_type,
+      </if>
+      <if test="browsePoints != null" >
+        browse_points,
+      </if>
+      <if test="praisePoints != null" >
+        praise_points,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="loseTime != null" >
+        #{loseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lostPlace != null" >
+        #{lostPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="details != null" >
+        #{details,jdbcType=VARCHAR},
+      </if>
+      <if test="postType != null" >
+        #{postType,jdbcType=INTEGER},
+      </if>
+      <if test="browsePoints != null" >
+        #{browsePoints,jdbcType=INTEGER},
+      </if>
+      <if test="praisePoints != null" >
+        #{praisePoints,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lost_found.pojo.Post" >
+    update post
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="loseTime != null" >
+        lose_time = #{loseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lostPlace != null" >
+        lost_place = #{lostPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="details != null" >
+        details = #{details,jdbcType=VARCHAR},
+      </if>
+      <if test="postType != null" >
+        post_type = #{postType,jdbcType=INTEGER},
+      </if>
+      <if test="browsePoints != null" >
+        browse_points = #{browsePoints,jdbcType=INTEGER},
+      </if>
+      <if test="praisePoints != null" >
+        praise_points = #{praisePoints,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lost_found.pojo.Post" >
+    update post
+    set user_id = #{userId,jdbcType=INTEGER},
+      `name` = #{name,jdbcType=VARCHAR},
+      lose_time = #{loseTime,jdbcType=TIMESTAMP},
+      lost_place = #{lostPlace,jdbcType=VARCHAR},
+      contact = #{contact,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=INTEGER},
+      details = #{details,jdbcType=VARCHAR},
+      post_type = #{postType,jdbcType=INTEGER},
+      browse_points = #{browsePoints,jdbcType=INTEGER},
+      praise_points = #{praisePoints,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

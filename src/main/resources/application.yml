@@ -1,0 +1,30 @@
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm
+    time-zone: GMT+8
+  datasource:
+    password: 123456
+    username: root
+    url: jdbc:mysql://localhost:3306/lose_found?serverTimezone=GMT%2B8&allowMultiQueries=true&characterEncoding=UTF-8
+
+
+  thymeleaf:
+    cache: false
+
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+
+mybatis:
+  type-aliases-package: com.lost_found.pojo
+  mapper-locations: mappers/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
